@@ -1,68 +1,67 @@
-syntax on
-set ts=4
 set nu
-set ai
-set scrolloff=5
-set so=999
-colorscheme default
-filetype plugin on
-set wildmenu
-"let Tlist_Use_Right_Window=1
-"let Tlist_GainFocus_On_ToggleOpen=0
-"let Tlist_Exit_OnlyWindow=1
+set autoindent
+set scrolloff=999
 
-" Add cursor line
+" Tabs and spaces parameters
+set expandtab
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
+autocmd BufWritePre * :%s/\s\+$//e " Remove trim traling whitespace
+
+:syntax sync linebreaks=1
+" Search parameters
+set hlsearch
+set incsearch
+
+
+" Colors and cursor lines
+set t_Co=256
+syntax on
+colorscheme wombat256
+
+"set textwidth=80
+"let &colorcolumn=join(range(&textwidth+1,999),",")
+highlight colorcolumn cterm=none ctermbg=238 ctermfg=88
+
 set cursorline
-highlight CursorLine ctermbg=white ctermfg=black
+highlight CursorLine cterm=none ctermbg=238
 set cursorcolumn
-highlight CursorColumn ctermbg=white ctermfg=black
+highlight CursorColumn cterm=none ctermbg=238
 
-" navigate in long line
-map <DOWN> gj
-map <UP> gk
-imap <A-DOWN> <esc>gji
-imap <A-UP> <esc>gki
+" Keys mapping
+map <F1> :set nu!<CR>
+map <F2> :set paste!<CR> :set paste?<CR>
+map <F3> :set list!<CR>
+map <F4> :set ignorecase!<CR> :set ignorecase?<CR>
+let g:colorColumnSize=999
+fu! ToggleColorColumn()
+    if g:colorColumnSize == "999"
+        let g:colorColumnSize=81
+    else
+        let g:colorColumnSize=999
+    endif
+    let &colorcolumn=join(range(g:colorColumnSize,999),",")
+endfunction
+map <F5> :call ToggleColorColumn()<CR>
 
-" Remove trim traling whitespace
-autocmd BufWritePre * :%s/\s\+$//e
+
+filetype plugin on
 
 " Python file
-autocmd FileType python set omnifunc=pythoncomplete#Complete
-autocmd FileType python set expandtab
-autocmd FileType python set tabstop=4
-autocmd FileType python set softtabstop=4
-autocmd FileType python set shiftwidth=4
-autocmd FileType python set autoindent
-autocmd FileType python set smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class
-autocmd FileType python set backspace=indent,eol,start
-autocmd FileType python set dictionary+=/usr/share/vim/dictionary/python
-"autocmd FileType python TlistToggle
-
-" XML file
-autocmd FileType xml set expandtab
-autocmd FileType xml set tabstop=2
-autocmd FileType xml set softtabstop=2
-autocmd FileType xml set shiftwidth=2
-autocmd FileType xml set autoindent
-autocmd FileType xml set backspace=indent,eol,start
-
-autocmd FileType txt set expandtab
-autocmd FileType txt set tabstop=4
-autocmd FileType txt set softtabstop=4
-autocmd FileType txt set shiftwidth=4
-autocmd FileType txt set autoindent
-autocmd FileType txt set backspace=indent,eol,start
+au FileType python set smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class
+au FileType python set backspace=indent,eol,start
+au FileType python set textwidth=80
 
 " HTML file
-autocmd FileType html set expandtab
-autocmd FileType html set tabstop=2
-autocmd FileType html set softtabstop=2
-autocmd FileType html set shiftwidth=2
-autocmd FileType html set autoindent
-autocmd FileType html set backspace=indent,eol,start
-autocmd FileType html set dictionary+=/usr/share/vim/dictionary/html
-"autocmd FileType html set smartindent cinwords=html,head,body,div
+au FileType html set expandtab
+au FileType html set tabstop=2
+au FileType html set softtabstop=2
+au FileType html set shiftwidth=2
 
-map <C-n> <C-x><C-k>
+execute pathogen#infect()
+" Needed for powerline!
+set laststatus=2
 
+" TODO file
 autocmd BufNewFile,BufRead *.todo setf todo
