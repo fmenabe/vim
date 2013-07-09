@@ -78,6 +78,7 @@ au FileType html set shiftwidth=2
 
 
 " Plugins
+"set rtp+=$HOME/.local/lib/python2.7/site-packages/powerline/bindings/vim/ " needed on ubuntu when powerline is installed for a user
 set laststatus=2 " Always show status line (needed for powerline).
 execute pathogen#infect()
 
