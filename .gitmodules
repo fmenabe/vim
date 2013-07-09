@@ -1,0 +1,3 @@
+[submodule "vimfiles/bundle/SimpylFold"]
+	path = vimfiles/bundle/SimpylFold
+	url = https://github.com/tmhedberg/SimpylFold.git
