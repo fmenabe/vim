@@ -1,7 +1,7 @@
-" Description:    a colour scheme for light background
-"  Maintainer:    francois.menabe@gmail.com
-"     License:    BSD
-"     Version:    0.1 (2013.05.18)
+" Description:  a colour scheme for light background
+" Maintainer:   francois.menabe@gmail.com
+" License:      BSD
+" Version:      0.1 (2013.05.18)
 
 set background=light
 
