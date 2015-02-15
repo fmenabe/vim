@@ -26,7 +26,7 @@ set incsearch
 " Colors and cursor lines
 set t_Co=256
 syntax on
-colorscheme light256
+colorscheme light256-2
 
 set textwidth=80
 "let &colorcolumn=join(range(&textwidth+1,999),",")
